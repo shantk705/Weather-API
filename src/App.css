@@ -1,9 +1,14 @@
+*{
+  family: Raleway;
+}
+
+
 .App {
-  text-align: center;
+  text-align:left;
 }
 h1{
   display: flex;
-  background-color: red;
+  background-color: blue;
   justify-content: center;
 }
 

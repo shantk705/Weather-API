@@ -1,8 +1,19 @@
 import "./App.css";
+
+import SearchBar from "./components/Search_Bar";
+import CurrentWeather from "./components/Current_Weather";
+import Everything from "./components/Everything";
+
+
 function App() {
   return (
     <>
-      <h1>Layla </h1>
+     <SearchBar />
+      <body>
+           <CurrentWeather />
+
+           <Everything />
+      </body>
     </>
   );
 }

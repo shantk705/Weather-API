@@ -1,74 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
-import storm from "./imgs/snow.svg";
+import Search_bar from "./components/search_bar";
+import WeatherList from "./components/WeatherList";
+import MainWeather from "./components/MainWeather";
 
 function App() {
+  const [response, setResponse] = useState([]);
+  const apiGet = () => {
+    fetch(
+      "https://api.openweathermap.org/data/2.5/weather?q=lebanon&appid=039085608fe94c2eb4c476cb202f9488"
+    )
+      .then((response) => response.json())
+      .then((json) => setResponse((prev) => [...prev, json]));
+  };
+
   return (
     <>
-      <header>
-        <input
-          className="input-country"
-          type="text"
-          placeholder="Search For A City"
-        />
-        <button className="searchbtn" onClick="">
-          Find Weather
-        </button>
-      </header>
-
+      <Search_bar />
+      <button onClick={apiGet} />
+      {console.log(response)}
 
       <body className="main-body">
-        <div className="weather-main">
-          <img className="main-img" src="https://icon-library.com/images/50x50-icon/50x50-icon-0.jpg" alt="" />
-          <div className="weather-main__type">cloudy</div>
-          <div className="weather-main__temp">
-            <b>tempreature</b> 80 to 100
-          </div>
-          <div className="weather-main__details">
-            <div className="weather-main__humidity ">
-              <b>humidity</b> 57%
-            </div>
-            <div className="weather-main__pressure">
-              <b>pressure</b> 965.2
-            </div>
-          </div>
-        </div>
+        <MainWeather />
+
         <div className="weather-list">
-          <div className="weather-list__items">
-            <p>0:00</p>
-            <img className="list-img" src="https://icon-library.com/images/50x50-icon/50x50-icon-0.jpg" alt=""></img>
-            <p>17°C</p>
-          </div>
-          <div className="weather-list__items">
-            <p>0:00 </p>
-            <img className="list-img" src="https://icon-library.com/images/50x50-icon/50x50-icon-0.jpg" alt=""></img>
-            <p>17°C</p>
-          </div>
-          <div className="weather-list__items">
-            <p>0:00</p>
-            <img className="list-img" src="https://icon-library.com/images/50x50-icon/50x50-icon-0.jpg" alt=""></img>
-            <p>17°C</p>
-          </div>
-          <div className="weather-list__items">
-            <p>0:00 </p>
-            <img className="list-img" src="https://icon-library.com/images/50x50-icon/50x50-icon-0.jpg" alt=""></img>
-            <p>17°C</p>
-          </div>
-          <div className="weather-list__items">
-            <p>0:00 </p>
-            <img className="list-img" src="https://icon-library.com/images/50x50-icon/50x50-icon-0.jpg" alt=""></img>
-            <p>17°C</p>
-          </div>
-          <div className="weather-list__items">
-            <p>0:00 </p>
-            <img className="list-img" src="https://icon-library.com/images/50x50-icon/50x50-icon-0.jpg" alt=""></img>
-            <p>17°C</p>
-          </div>
-          <div className="weather-list__items">
-            <p>0:00</p>
-            <img  className="list-img" src="https://icon-library.com/images/50x50-icon/50x50-icon-0.jpg" alt=""></img>
-            <p>17°C</p>
-          </div>
+          <WeatherList />
         </div>
       </body>
     </>

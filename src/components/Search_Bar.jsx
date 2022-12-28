@@ -1,20 +1,34 @@
-import React from 'react'
+import { useState } from "react";
 
-function SearchBar() {
+
+function SearchBar({ fetchWeather }) {
+  const [city, setCity] = useState("");
+  const fetchWeatherHandler = () => {
+    fetchWeather(city);
+  };
   return (
-    <>
- <header className="search_bar">
-        <div className="input">
-          <input type="text" placeholder="search " className="search"></input>
-        </div>
-        <div claaName="button">
-          <button> FIND WEATHER</button>
-        </div>
-      </header>
 
-</>
-   
-  )
+    <header>
+    <div class="top">
+      <input
+        type="text"
+        className="search"
+        value={city}
+        placeholder="Enter location"
+        onChange={(e) => setCity(e.target.value)}
+      />
+      <button className="button" onClick={fetchWeatherHandler}>Find Weather</button>
+    </div>
+    </header>
+  );
 }
+export default SearchBar;
 
-export default SearchBar
+
+
+
+
+
+
+
+
